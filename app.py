@@ -10,6 +10,9 @@ app = Flask(__name__)
 def index():
     df = pd.read_csv("fcc_sensing_simulado-tercer intento con predicciones.csv")
 
+    # Convertir columna 'pronosticado' a booleano seguro
+    df['pronosticado'] = df['pronosticado'].astype(str).str.lower() == 'true'
+
     # Crear columnas separadas para datos reales y pronosticados
     df['reales'] = df.apply(lambda row: row['dias_anticipacion'] if not row['pronosticado'] else None, axis=1)
     df['pronosticados'] = df.apply(lambda row: row['dias_anticipacion'] if row['pronosticado'] else None, axis=1)
