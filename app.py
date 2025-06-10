@@ -6,7 +6,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def dashboard():
-    df = pd.read_csv("fcc_dias_anticipacion_con_predicciones.csv")
+    df = pd.read_csv("fcc_sensing_simulado-tercer intento con predicciones.csv")
+
 
     promedio_anticipacion = round(df['dias_anticipacion'].mean(), 2)
     precision_alertas = round((df['alertas_correctas'] / df['alertas_predictivas']).mean(), 2)
